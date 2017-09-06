@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -32,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.keteranganBarang)
     TextView KeteranganBarang;
 
-    DatabaseReference dbFirebase;
-    FirebaseDatabase dbInstance;
+    DatabaseReference dbReferences;
+    FirebaseDatabase dbFirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        dbInstance = FirebaseDatabase.getInstance();
-        dbFirebase = dbInstance.getReference("barang");
+        dbFirebase = FirebaseDatabase.getInstance();
+        dbReferences = dbFirebase.getReference("barang");
 
         loadStatus();
 
@@ -51,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadStatus() {
 
-        dbInstance.getReference("status").setValue("online");
-        dbInstance.getReference("status").addValueEventListener(new ValueEventListener() {
+        dbFirebase.getReference("status").setValue("online");
+        dbFirebase.getReference("status").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String Data = dataSnapshot.getValue(String.class);
@@ -84,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(findViewById(R.id.parent) , "Lengkapi Form Untuk Menyimpan Barang" , Snackbar.LENGTH_SHORT).show();
                 } else {
 
-                    String UserID = dbFirebase.push().getKey();
+                    String UserID = dbReferences.push().getKey();
                     Barang barang = new Barang(Barangs , Keterangan , Harga);
 
-                    dbFirebase.child(UserID).setValue(barang);
-                    dbFirebase.child(UserID).addValueEventListener(new ValueEventListener() {
+                    dbReferences.child(UserID).setValue(barang);
+                    dbReferences.child(UserID).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 

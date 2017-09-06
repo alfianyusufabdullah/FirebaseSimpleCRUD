@@ -8,7 +8,6 @@ import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -25,14 +24,14 @@ public class ListBarang extends AppCompatActivity {
     @BindView(R.id.listBarang)
     RecyclerView listBarang;
 
-    FirebaseDatabase dbInstance;
+    FirebaseDatabase dbFirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_barang);
 
-        dbInstance = FirebaseDatabase.getInstance();
+        dbFirebase = FirebaseDatabase.getInstance();
 
         ButterKnife.bind(this);
 
@@ -41,7 +40,7 @@ public class ListBarang extends AppCompatActivity {
 
     private void loadData() {
 
-        dbInstance.getReferenceFromUrl("https://jonesrandom-97.firebaseio.com/barang").addValueEventListener(new ValueEventListener() {
+        dbFirebase.getReferenceFromUrl("https://jonesrandom-97.firebaseio.com/barang").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
