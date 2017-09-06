@@ -49,6 +49,11 @@ public class DetailBarang extends AppCompatActivity {
         dbFirebase = FirebaseDatabase.getInstance();
         dbReference = dbFirebase.getReference("barang");
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadData();
     }
 
@@ -130,7 +135,6 @@ public class DetailBarang extends AppCompatActivity {
                 if (dataSnapshot.child("nama").getValue() == null){
                     finish();
                 }
-
             }
 
             @Override

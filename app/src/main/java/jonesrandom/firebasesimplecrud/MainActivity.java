@@ -93,9 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
                             Snackbar.make(findViewById(R.id.parent) , "Berhasil Menambah Data" , Snackbar.LENGTH_SHORT).show();
 
-                            Barang b = dataSnapshot.getValue(Barang.class);
-                            Log.d(TAG, "onDataChange: Barang = " + b.getNama());
-
                             NamaBarang.setText("");
                             KeteranganBarang.setText("");
                             HargaBarang.setText("");
