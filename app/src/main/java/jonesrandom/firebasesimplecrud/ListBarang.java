@@ -1,10 +1,14 @@
 package jonesrandom.firebasesimplecrud;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +28,9 @@ public class ListBarang extends AppCompatActivity {
     @BindView(R.id.listBarang)
     RecyclerView listBarang;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     FirebaseDatabase dbFirebase;
 
     @Override
@@ -32,10 +39,12 @@ public class ListBarang extends AppCompatActivity {
         setContentView(R.layout.activity_list_barang);
 
         dbFirebase = FirebaseDatabase.getInstance();
-
         ButterKnife.bind(this);
 
         loadData();
+
+        toolbar.setTitle("Firebase CRUD");
+        setSupportActionBar(toolbar);
     }
 
     private void loadData() {
@@ -72,5 +81,20 @@ public class ListBarang extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu , menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.add){
+            startActivity(new Intent(ListBarang.this , MainActivity.class));
+        }
+        return true;
     }
 }

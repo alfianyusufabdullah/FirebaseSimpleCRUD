@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -31,8 +33,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.keteranganBarang)
     TextView KeteranganBarang;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     DatabaseReference dbReferences;
     FirebaseDatabase dbFirebase;
+
+    String UserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +47,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-
         dbFirebase = FirebaseDatabase.getInstance();
-        dbReferences = dbFirebase.getReference("barang");
 
         loadStatus();
+
+        if (toolbar != null){
+            toolbar.setTitle("Tambah Data");
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
     }
 
@@ -67,54 +78,54 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.btnSave , R.id.btnLihat})
-    public void onClick(View v){
+    @OnClick(R.id.btnSave)
+    public void onClick(View v) {
 
-        switch (v.getId()){
+        String Barangs = NamaBarang.getText().toString();
+        String Keterangan = KeteranganBarang.getText().toString();
+        final String Harga = HargaBarang.getText().toString();
 
-            case R.id.btnSave:
+        if (Barangs.isEmpty() || Keterangan.isEmpty() || Harga.isEmpty()) {
 
-                String Barangs = NamaBarang.getText().toString();
-                String Keterangan = KeteranganBarang.getText().toString();
-                final String Harga = HargaBarang.getText().toString();
+            Snackbar.make(findViewById(R.id.parent), "Lengkapi Form Untuk Menyimpan Barang", Snackbar.LENGTH_SHORT).show();
+        } else {
 
-                if (Barangs.isEmpty() || Keterangan.isEmpty() || Harga.isEmpty()){
+            dbReferences = dbFirebase.getReference("barang");
+            UserID = dbReferences.push().getKey();
+            final Barang barang = new Barang(Barangs, Keterangan, Harga);
 
-                    Snackbar.make(findViewById(R.id.parent) , "Lengkapi Form Untuk Menyimpan Barang" , Snackbar.LENGTH_SHORT).show();
-                } else {
+            dbReferences.child(UserID).setValue(barang);
+            dbReferences.child(UserID).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    String UserID = dbReferences.push().getKey();
-                    Barang barang = new Barang(Barangs , Keterangan , Harga);
+                    Snackbar.make(findViewById(R.id.parent), "Berhasil Menambah Data", Snackbar.LENGTH_SHORT).show();
 
-                    dbReferences.child(UserID).setValue(barang);
-                    dbReferences.child(UserID).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+                    NamaBarang.setText("");
+                    KeteranganBarang.setText("");
+                    HargaBarang.setText("");
 
-                            Snackbar.make(findViewById(R.id.parent) , "Berhasil Menambah Data" , Snackbar.LENGTH_SHORT).show();
-
-                            NamaBarang.setText("");
-                            KeteranganBarang.setText("");
-                            HargaBarang.setText("");
-
-                            NamaBarang.requestFocus();
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Snackbar.make(findViewById(R.id.parent) , "Terjadi Kesalahan" , Snackbar.LENGTH_SHORT).show();
-                            Log.d(TAG, "onCancelled: " + databaseError.getMessage());
-                        }
-                    });
+                    NamaBarang.requestFocus();
 
                 }
-                break;
-            case R.id.btnLihat:
 
-                startActivity(new Intent(MainActivity.this , ListBarang.class));
-                break;
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Snackbar.make(findViewById(R.id.parent), "Terjadi Kesalahan", Snackbar.LENGTH_SHORT).show();
+                    Log.d(TAG, "onCancelled: " + databaseError.getMessage());
+                }
+            });
 
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return true;
     }
 }

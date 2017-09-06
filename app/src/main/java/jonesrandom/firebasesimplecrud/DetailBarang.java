@@ -5,7 +5,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -31,6 +33,9 @@ public class DetailBarang extends AppCompatActivity {
     @BindView(R.id.keteranganBarang)
     TextView KeteranganBarang;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     String Nama;
     String Harga;
     String Keterangan;
@@ -49,6 +54,9 @@ public class DetailBarang extends AppCompatActivity {
         dbFirebase = FirebaseDatabase.getInstance();
         dbReference = dbFirebase.getReference("barang");
 
+        toolbar.setTitle("Detail Barang");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -131,7 +139,6 @@ public class DetailBarang extends AppCompatActivity {
         dbReference.child(Nodes).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 if (dataSnapshot.child("nama").getValue() == null){
                     finish();
                 }
@@ -143,5 +150,14 @@ public class DetailBarang extends AppCompatActivity {
                 Log.d("DetailBarang", "onCancelled: " + databaseError.getMessage());
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return true;
     }
 }
