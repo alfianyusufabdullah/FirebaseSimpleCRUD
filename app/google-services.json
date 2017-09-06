@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "341545067695",
+    "firebase_url": "https://jonesrandom-97.firebaseio.com",
+    "project_id": "jonesrandom-97",
+    "storage_bucket": "jonesrandom-97.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341545067695:android:21e112a36b2bdb5a",
+        "android_client_info": {
+          "package_name": "jonesrandom.firebasesimplecrud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341545067695-vgesj5gjrookit7i1ri4br8s4u0s6aki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCokmIMl4fjtVqT-oqlc_iFAB444hdBd_Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
