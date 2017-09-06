@@ -5,9 +5,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,22 +19,26 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import jonesrandom.firebasesimplecrud.Utils.NumberTextWatcher;
 
 public class MainActivity extends AppCompatActivity {
 
     private static String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.namaBarang)
-    TextView NamaBarang;
+    EditText NamaBarang;
 
     @BindView(R.id.hargaBarang)
-    TextView HargaBarang;
+    EditText HargaBarang;
 
     @BindView(R.id.keteranganBarang)
-    TextView KeteranganBarang;
+    EditText KeteranganBarang;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -56,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        HargaBarang.addTextChangedListener(new NumberTextWatcher(HargaBarang));
 
     }
 
