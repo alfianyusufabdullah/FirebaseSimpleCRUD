@@ -7,10 +7,6 @@ import android.widget.EditText;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 
-/**
- * Created by JonesRandom on 9/6/17.
- * https://masx-dev.blogspot.com
- */
 
 public class NumberTextWatcher implements TextWatcher {
 
