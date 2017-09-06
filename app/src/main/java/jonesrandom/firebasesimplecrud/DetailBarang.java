@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,8 +36,8 @@ public class DetailBarang extends AppCompatActivity {
     String Keterangan;
     String Node;
 
-    FirebaseDatabase dbInstance;
-    DatabaseReference dbFirebase;
+    FirebaseDatabase dbFirebase;
+    DatabaseReference dbReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +46,8 @@ public class DetailBarang extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        dbInstance = FirebaseDatabase.getInstance();
-        dbFirebase = dbInstance.getReference("barang");
+        dbFirebase = FirebaseDatabase.getInstance();
+        dbReference = dbFirebase.getReference("barang");
 
         loadData();
     }
@@ -103,8 +102,8 @@ public class DetailBarang extends AppCompatActivity {
                     barang.setHarga(Harga);
                     barang.setKeterangan(Keterangan);
 
-                    dbFirebase.child(Node).setValue(barang);
-                    dbFirebase.child(Node).addValueEventListener(new ValueEventListener() {
+                    dbReference.child(Node).setValue(barang);
+                    dbReference.child(Node).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -123,8 +122,8 @@ public class DetailBarang extends AppCompatActivity {
     }
 
     private void delete(String Nodes){
-        dbFirebase.child(Nodes).removeValue();
-        dbFirebase.child(Nodes).addValueEventListener(new ValueEventListener() {
+        dbReference.child(Nodes).removeValue();
+        dbReference.child(Nodes).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
