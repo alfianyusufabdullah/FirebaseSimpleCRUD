@@ -43,7 +43,7 @@ public class HolderBarang extends RecyclerView.ViewHolder {
     public void setContent(final Barang barang, final Context ctx) {
 
         NamaBarang.setText(barang.getNama());
-        HargaBarang.setText(" Rp." + barang.getHarga());
+        HargaBarang.setText(" Rp. " + barang.getHarga());
 
         parent.setOnClickListener(new View.OnClickListener() {
             @Override

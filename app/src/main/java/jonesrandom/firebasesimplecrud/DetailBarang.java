@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,17 +22,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jonesrandom.firebasesimplecrud.List.HolderBarang;
+import jonesrandom.firebasesimplecrud.Utils.NumberTextWatcher;
 
 public class DetailBarang extends AppCompatActivity {
 
     @BindView(R.id.namaBarang)
-    TextView NamaBarang;
+    EditText NamaBarang;
 
     @BindView(R.id.hargaBarang)
-    TextView HargaBarang;
+    EditText HargaBarang;
 
     @BindView(R.id.keteranganBarang)
-    TextView KeteranganBarang;
+    EditText KeteranganBarang;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -75,6 +77,8 @@ public class DetailBarang extends AppCompatActivity {
         NamaBarang.setText(Nama);
         HargaBarang.setText(Harga);
         KeteranganBarang.setText(Keterangan);
+
+        HargaBarang.addTextChangedListener(new NumberTextWatcher(HargaBarang));
 
     }
 
