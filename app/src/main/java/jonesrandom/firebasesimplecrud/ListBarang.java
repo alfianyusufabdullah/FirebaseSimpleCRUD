@@ -57,9 +57,14 @@ public class ListBarang extends AppCompatActivity {
 
                 for (DataSnapshot data : dataSnapshot.getChildren()){
                     Barang datas = data.getValue(Barang.class);
-                    listData.add(datas);
+                    Barang barang = new Barang();
+                    barang.setNama(datas.getNama());
+                    barang.setHarga(datas.getHarga());
+                    barang.setKeterangan(datas.getKeterangan());
+                    barang.setNode(data.getKey());
+                    listData.add(barang);
 
-                    Log.d("ListBarang", "onCancelled: " + datas.getNama());
+                    Log.d("ListBarang", "onCancelled: " + barang.getNode());
                 }
 
                 AdapterBarang adapterBarang = new AdapterBarang(ListBarang.this , listData);

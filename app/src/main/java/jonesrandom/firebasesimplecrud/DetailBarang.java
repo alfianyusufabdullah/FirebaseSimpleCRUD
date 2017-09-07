@@ -74,6 +74,8 @@ public class DetailBarang extends AppCompatActivity {
         Keterangan = getIntent().getStringExtra(HolderBarang.KETERANGAN);
         Node = getIntent().getStringExtra(HolderBarang.NODE);
 
+        Log.d("DETAIL", "loadData: " + Node);
+
         NamaBarang.setText(Nama);
         HargaBarang.setText(Harga);
         KeteranganBarang.setText(Keterangan);
