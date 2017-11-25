@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import jonesrandom.firebasesimplecrud.Adapter.AdapterBarang;
 import jonesrandom.firebasesimplecrud.model.ModelBarang;
 
-public class ListBarang extends AppCompatActivity {
+public class ListBarangActivity extends AppCompatActivity {
 
 
     @BindView(R.id.listBarang)
@@ -65,20 +65,20 @@ public class ListBarang extends AppCompatActivity {
                     barang.setNode(data.getKey());
                     listData.add(barang);
 
-                    Log.d("ListBarang", "onCancelled: " + barang.getNode());
+                    Log.d("ListBarangActivity", "onCancelled: " + barang.getNode());
                 }
 
-                AdapterBarang adapterBarang = new AdapterBarang(ListBarang.this , listData);
+                AdapterBarang adapterBarang = new AdapterBarang(ListBarangActivity.this , listData);
 
                 listBarang.setHasFixedSize(true);
-                listBarang.setLayoutManager(new LinearLayoutManager(ListBarang.this));
+                listBarang.setLayoutManager(new LinearLayoutManager(ListBarangActivity.this));
                 listBarang.setAdapter(adapterBarang);
 
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d("ListBarang", "onCancelled: " + databaseError.getMessage());
+                Log.d("ListBarangActivity", "onCancelled: " + databaseError.getMessage());
             }
         });
 
@@ -94,7 +94,7 @@ public class ListBarang extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.add){
-            startActivity(new Intent(ListBarang.this , MainActivity.class));
+            startActivity(new Intent(ListBarangActivity.this , MainActivity.class));
         }
         return true;
     }

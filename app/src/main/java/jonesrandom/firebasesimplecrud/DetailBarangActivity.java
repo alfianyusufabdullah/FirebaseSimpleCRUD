@@ -24,7 +24,7 @@ import jonesrandom.firebasesimplecrud.Adapter.HolderBarang;
 import jonesrandom.firebasesimplecrud.Utils.NumberTextWatcher;
 import jonesrandom.firebasesimplecrud.model.ModelBarang;
 
-public class DetailBarang extends AppCompatActivity {
+public class DetailBarangActivity extends AppCompatActivity {
 
     @BindView(R.id.namaBarang)
     EditText NamaBarang;
@@ -91,7 +91,7 @@ public class DetailBarang extends AppCompatActivity {
 
             case R.id.btnHapus:
 
-                AlertDialog.Builder build = new AlertDialog.Builder(DetailBarang.this);
+                AlertDialog.Builder build = new AlertDialog.Builder(DetailBarangActivity.this);
                 build.setTitle("Hapus Data");
                 build.setMessage("Apakah Anda Yakin Ingin Menghapus " + Nama + "?");
                 build.setPositiveButton("YES", new DialogInterface.OnClickListener() {
@@ -132,7 +132,7 @@ public class DetailBarang extends AppCompatActivity {
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                             Snackbar.make(findViewById(R.id.parent) , "Terjadi Kesalahan Saat Menyimpan" , Snackbar.LENGTH_SHORT).show();
-                            Log.d("DetailBarang", "onCancelled: " + databaseError.getMessage());
+                            Log.d("DetailBarangActivity", "onCancelled: " + databaseError.getMessage());
                         }
                     });
                 }
@@ -153,7 +153,7 @@ public class DetailBarang extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Snackbar.make(findViewById(R.id.parent) , "Terjadi Kesalahan Saat Menghapus" , Snackbar.LENGTH_SHORT).show();
-                Log.d("DetailBarang", "onCancelled: " + databaseError.getMessage());
+                Log.d("DetailBarangActivity", "onCancelled: " + databaseError.getMessage());
             }
         });
     }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import jonesrandom.firebasesimplecrud.model.ModelBarang;
-import jonesrandom.firebasesimplecrud.DetailBarang;
+import jonesrandom.firebasesimplecrud.DetailBarangActivity;
 import jonesrandom.firebasesimplecrud.R;
 
 /**
@@ -49,7 +49,7 @@ public class HolderBarang extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
 
-                Intent detail = new Intent(ctx, DetailBarang.class);
+                Intent detail = new Intent(ctx, DetailBarangActivity.class);
                 detail.putExtra(NAMA, barang.getNama());
                 detail.putExtra(KETERANGAN, barang.getKeterangan());
                 detail.putExtra(HARGA, barang.getHarga());
