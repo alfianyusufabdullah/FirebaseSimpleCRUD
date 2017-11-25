@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import jonesrandom.firebasesimplecrud.List.HolderBarang;
+import jonesrandom.firebasesimplecrud.Adapter.HolderBarang;
 import jonesrandom.firebasesimplecrud.Utils.NumberTextWatcher;
 import jonesrandom.firebasesimplecrud.model.ModelBarang;
 

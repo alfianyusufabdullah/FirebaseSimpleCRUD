@@ -20,7 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import jonesrandom.firebasesimplecrud.List.AdapterBarang;
+import jonesrandom.firebasesimplecrud.Adapter.AdapterBarang;
 import jonesrandom.firebasesimplecrud.model.ModelBarang;
 
 public class ListBarang extends AppCompatActivity {
