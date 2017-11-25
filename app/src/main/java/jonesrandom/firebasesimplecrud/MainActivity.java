@@ -52,14 +52,14 @@ public class MainActivity extends AppCompatActivity {
 
         loadStatus();
 
-        if (toolbar != null){
-            toolbar.setTitle("Tambah Data");
-            setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Tambah Data");
         }
 
         HargaBarang.addTextChangedListener(new NumberTextWatcher(HargaBarang));
-
     }
 
     private void loadStatus() {
@@ -118,15 +118,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "onCancelled: " + databaseError.getMessage());
                 }
             });
-
         }
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             finish();
         }
         return true;
