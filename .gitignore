@@ -1,6 +1,9 @@
 *.iml
 .gradle
 /local.properties
+/.idea/markdown-navigator/profiles_setting.xml
+/.idea/markdown-navigator/
+/.idea/markdown-navigator.xml
 /.idea/workspace.xml
 /.idea/libraries
 .DS_Store
