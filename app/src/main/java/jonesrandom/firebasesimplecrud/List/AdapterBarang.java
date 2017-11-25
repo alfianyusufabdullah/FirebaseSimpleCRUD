@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import jonesrandom.firebasesimplecrud.Barang;
+import jonesrandom.firebasesimplecrud.model.ModelBarang;
 import jonesrandom.firebasesimplecrud.R;
 
 /**
@@ -18,10 +18,10 @@ import jonesrandom.firebasesimplecrud.R;
 
 public class AdapterBarang extends RecyclerView.Adapter<HolderBarang>{
 
-    private List<Barang> data;
+    private List<ModelBarang> data;
     private Context ctx;
 
-    public AdapterBarang(Context ctx ,List<Barang> data) {
+    public AdapterBarang(Context ctx ,List<ModelBarang> data) {
         this.ctx = ctx;
         this.data = data;
     }

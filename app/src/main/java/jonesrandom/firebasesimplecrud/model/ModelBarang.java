@@ -1,21 +1,21 @@
-package jonesrandom.firebasesimplecrud;
+package jonesrandom.firebasesimplecrud.model;
 
 /**
  * Created by JonesRandom on 9/6/17.
  * https://masx-dev.blogspot.com
  */
 
-public class Barang {
+public class ModelBarang {
 
     private String Nama;
     private String Keterangan;
     private String Harga;
     private String Node;
 
-    public Barang() {
+    public ModelBarang() {
     }
 
-    public Barang(String nama, String keterangan, String harga) {
+    public ModelBarang(String nama, String keterangan, String harga) {
         Nama = nama;
         Keterangan = keterangan;
         Harga = harga;

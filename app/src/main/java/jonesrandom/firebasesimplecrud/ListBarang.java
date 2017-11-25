@@ -21,6 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import jonesrandom.firebasesimplecrud.List.AdapterBarang;
+import jonesrandom.firebasesimplecrud.model.ModelBarang;
 
 public class ListBarang extends AppCompatActivity {
 
@@ -53,11 +54,11 @@ public class ListBarang extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                List<Barang> listData = new ArrayList<>();
+                List<ModelBarang> listData = new ArrayList<>();
 
                 for (DataSnapshot data : dataSnapshot.getChildren()){
-                    Barang datas = data.getValue(Barang.class);
-                    Barang barang = new Barang();
+                    ModelBarang datas = data.getValue(ModelBarang.class);
+                    ModelBarang barang = new ModelBarang();
                     barang.setNama(datas.getNama());
                     barang.setHarga(datas.getHarga());
                     barang.setKeterangan(datas.getKeterangan());

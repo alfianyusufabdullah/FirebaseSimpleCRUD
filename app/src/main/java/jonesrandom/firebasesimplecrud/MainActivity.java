@@ -1,17 +1,13 @@
 package jonesrandom.firebasesimplecrud;
 
-import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,13 +15,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jonesrandom.firebasesimplecrud.Utils.NumberTextWatcher;
+import jonesrandom.firebasesimplecrud.model.ModelBarang;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -96,12 +90,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (Barangs.isEmpty() || Keterangan.isEmpty() || Harga.isEmpty()) {
 
-            Snackbar.make(findViewById(R.id.parent), "Lengkapi Form Untuk Menyimpan Barang", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.parent), "Lengkapi Form Untuk Menyimpan ModelBarang", Snackbar.LENGTH_SHORT).show();
         } else {
 
             dbReferences = dbFirebase.getReference("barang");
             UserID = dbReferences.push().getKey();
-            final Barang barang = new Barang(Barangs, Keterangan, Harga);
+            final ModelBarang barang = new ModelBarang(Barangs, Keterangan, Harga);
 
             dbReferences.child(UserID).setValue(barang);
             dbReferences.child(UserID).addValueEventListener(new ValueEventListener() {

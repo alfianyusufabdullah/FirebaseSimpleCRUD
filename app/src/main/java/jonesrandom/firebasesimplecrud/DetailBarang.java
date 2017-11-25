@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jonesrandom.firebasesimplecrud.List.HolderBarang;
 import jonesrandom.firebasesimplecrud.Utils.NumberTextWatcher;
+import jonesrandom.firebasesimplecrud.model.ModelBarang;
 
 public class DetailBarang extends AppCompatActivity {
 
@@ -56,7 +56,7 @@ public class DetailBarang extends AppCompatActivity {
         dbFirebase = FirebaseDatabase.getInstance();
         dbReference = dbFirebase.getReference("barang");
 
-        toolbar.setTitle("Detail Barang");
+        toolbar.setTitle("Detail ModelBarang");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -113,10 +113,10 @@ public class DetailBarang extends AppCompatActivity {
 
                 if (Nama.isEmpty() || Harga.isEmpty() || Keterangan.isEmpty()){
 
-                    Snackbar.make(findViewById(R.id.parent) , "Lengkapi Form Untuk Menyimpan Barang" , Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.parent) , "Lengkapi Form Untuk Menyimpan ModelBarang" , Snackbar.LENGTH_SHORT).show();
                 } else {
 
-                    Barang barang = new Barang();
+                    ModelBarang barang = new ModelBarang();
                     barang.setNama(Nama);
                     barang.setHarga(Harga);
                     barang.setKeterangan(Keterangan);

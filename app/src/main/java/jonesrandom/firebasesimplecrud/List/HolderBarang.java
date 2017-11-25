@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import jonesrandom.firebasesimplecrud.Barang;
+import jonesrandom.firebasesimplecrud.model.ModelBarang;
 import jonesrandom.firebasesimplecrud.DetailBarang;
 import jonesrandom.firebasesimplecrud.R;
 
@@ -40,7 +40,7 @@ public class HolderBarang extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void setContent(final Barang barang, final Context ctx) {
+    public void setContent(final ModelBarang barang, final Context ctx) {
 
         NamaBarang.setText(barang.getNama());
         HargaBarang.setText(" Rp. " + barang.getHarga());
